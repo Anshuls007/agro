@@ -85,7 +85,7 @@ export default function Index() {
 
           <circle cx="50%" cy="50%" r="20" stroke="currentColor" stroke-width="8" fill="transparent"
               strokeDasharray={125.714285714}
-              strokeDashoffset={125.714285714 - crop[crop?.length-1]?.nitrogen / 100 * 125.714285714}
+              strokeDashoffset={125.714285714 - (crop[crop?.length-1]?.nitrogen || 0) / 100 * 125.714285714}
               class="text-blue-500 " />
       </svg>
       <p className="text-lg font-bold">{crop[crop?.length-1]?.nitrogen}</p>
@@ -99,7 +99,7 @@ export default function Index() {
 
           <circle cx="50%" cy="50%" r="20" stroke="currentColor" stroke-width="8" fill="transparent"
               strokeDasharray={125.714285714}
-              strokeDashoffset={125.714285714 - crop[crop?.length-1]?.phosphorous / 100 * 125.714285714}
+              strokeDashoffset={125.714285714 - (crop[crop?.length-1]?.phosphorous || 0) / 100 * 125.714285714}
               class="text-blue-500 " />
       </svg>
       <p className="text-lg font-bold">{crop[crop?.length-1]?.phosphorous}</p>
@@ -112,7 +112,7 @@ export default function Index() {
 
           <circle cx="50%" cy="50%" r="20" stroke="currentColor" stroke-width="8" fill="transparent"
               strokeDasharray={125.714285714}
-              strokeDashoffset={125.714285714 - crop[crop?.length-1]?.potassium / 100 * 125.714285714}
+              strokeDashoffset={125.714285714 - (crop[crop?.length-1]?.potassium / 100 || 0) * 125.714285714}
               class="text-blue-500 " />
       </svg>
       <p className="text-lg font-bold">{crop[crop?.length-1]?.potassium}</p>
