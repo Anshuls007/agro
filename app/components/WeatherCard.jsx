@@ -46,19 +46,23 @@ export default function WeatherCard() {
   }, [location]);
 
   return (
-    <Card className="flex justify-between">
-      <div className="flex flex-col gap-2">
-        <p className="text-3xl">{temp ? temp.main.temp : "Calculating..."}</p>
+    <div className="flex justify-between">
+      <div className=" mx-4 flex flex-col gap-2">
+        <p className="text-3xl">
+          {temp ? temp.main.temp : "Weathering Now..."}
+        </p>
         <p className="text-gray-400">
-          {temp ? temp.weather[0].main : "Calculating..."}
+          {temp ? temp.weather[0].main : "Locating..."}
         </p>
       </div>
       <div>
-        <img
+        {temp ? (
+          <img
           width={80}
           src={`http://openweathermap.org/img/wn/${temp?.weather[0]?.icon}@2x.png`}
         />
+        ) : null}
       </div>
-    </Card>
+    </div>
   );
 }
