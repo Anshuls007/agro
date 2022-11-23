@@ -255,10 +255,10 @@ export default function Index() {
         <div className="bg-white drop-shadow-2xl rounded-2xl px-4 py-4 flex flex-col gap-4 overscroll-y">
         {news.map((item) => (
           <a href={item.url}>
-            <div className=" border-b border-xl">
-              <p className="font-bold">{item.title}</p>
-              <p className="font-normal">{item.description}</p>
-              <p className="font-normal text-sm text-gray-600">
+            <div className=" border-b border-xl px-2">
+              <p className="font-normal">{item.title}</p>
+              {/* <p className="font-normal">{item.description}</p> */}
+              <p className="font-normal text-xs text-gray-600">
                 {item["published date"]}
               </p>
             </div>
