@@ -46,7 +46,7 @@ export async function CropDoc(name){
   var data = new FormData();
   console.log(name, "name")
   data.append('image', fs.createReadStream(String(name)));
-
+  var call;
   var config = {
     method: 'post',
     url: 'http://20.244.2.184/api/detect/',
@@ -56,13 +56,13 @@ export async function CropDoc(name){
     data : data
   };
 
-  axios(config)
+  await axios(config)
   .then(function (response) {
     console.log(JSON.stringify(response.data));
-    return response.data
+    call=response.data;
   })
   .catch(function (error) {
     console.log(error);
   });
-  return null;
+  return call;
 }

@@ -1,6 +1,6 @@
 import { unstable_createFileUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
-import { Form, Link } from "@remix-run/react";
-import { useEffect, useState } from "react";
+import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
+import { useState } from "react";
 import { CropDoc } from "utils/api.server";
 import Button from "~/components/Button";
 import Field from "~/components/Field";
@@ -21,6 +21,7 @@ import Field from "~/components/Field";
 //   return {crop}
 // }
 
+
 export const action = async ({ request }) => {
   const uploadHandler = unstable_createFileUploadHandler({
     maxFileSize: 10_000_000,
@@ -34,23 +35,25 @@ export const action = async ({ request }) => {
   );
 
   const file = formData.get("image");
+  var data;
 
   if (file) {
     console.log(`File uploaded to server/public/uploads/${file.name}`);
-    const call = await CropDoc("public/uploads/"+file.name);
+    data = await CropDoc("public/uploads/"+file.name)
   } else {
     console.log("No file uploaded");
   }
 
-  return {};
+  return {data};
 };
 
 export default function CropScan() {
   const [image, setImage] = useState(null);
-
+  // const disease = call;
+  const data = useActionData()
   const diseasefetch = () => {
     var formdata = new FormData();
-    console.log(image.image, "image");
+    // console.log(image.image, "image");
   formdata.append("image", image.image, "test.jpeg");
 
   var requestOptions = {
@@ -87,13 +90,10 @@ export default function CropScan() {
     //   });
     // }
   };
-  useEffect(() => {
-    const disease = localStorage.getItem("disease")?localStorage.getItem("disease"):"";
-  });
   return (
     <div>
       <p>Please enter this details</p>
-      {(disease==="")?(<Form method="post" className="flex flex-col gap-4" encType="multipart/form-data">
+    <Form method="post" className="flex flex-col gap-4" encType="multipart/form-data">
         <input type="hidden" name="yoo" value="dsf"/>
         {true ? (
           <label
@@ -152,21 +152,11 @@ export default function CropScan() {
           Submit
         </Button>
         {/* </Link> */}
-      </Form>):(
-        <div className="flex flex-col gap-2">
-        <p className="text-center text-2xl font-medium">Result</p>
-        <Card className="h-52" />
-        <image src=''/>
-        <p>Type: {disease.type}</p>
-        <p>Crop name: {disease.crop_name}</p>
-        <p>Disease: {disease.Disease}</p>
-        <Button as={Link} to="/findSolution">
-          Find solution
-        </Button>
-        <Button>Seek consultent</Button>
-        <Button>Feedback</Button>
-      </div>
-      )}
+        {/* {call} */}
+      </Form>
+
+      {data&&JSON.stringify(data)}
+      
       {/* <Button as={Link} to="/doc" theme="monochrome" className="w-full mt-4">
         doc
       </Button> */}
