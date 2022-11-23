@@ -26,6 +26,7 @@ export default function App() {
   return (
     <html lang="en">
       <head>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <Meta />
         <Links />
       </head>
