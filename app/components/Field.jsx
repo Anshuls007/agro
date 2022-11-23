@@ -9,7 +9,7 @@ export default function Field({
 }) {
   return (
     <fieldset
-      className="w-full flex flex-col items-stretch border border-gray-400 rounded-xl px-2 py-2 justify-start gap-1 disabled:opacity-60 disabled:cursor-not-allowed"
+      className="w-full flex flex-col items-stretch rounded-xl justify-start gap-1 disabled:opacity-60 disabled:cursor-not-allowed"
       disabled={disabled}
     >
       {label ? (
@@ -21,8 +21,7 @@ export default function Field({
         <As
           id={id}
           className={[
-            "bg-white w-full font-medium px-4 py-2 rounded-lg text-black",
-            className,
+            "bg-white w-full h-min border border-gray-400 px-2 py-2 font-medium rounded-lg text-black",
           ].join(" ")}
           {...otherProps}
         />

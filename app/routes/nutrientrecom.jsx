@@ -110,7 +110,7 @@ export default function CropScan() {
         <div className="flex gap-2">
           <Link to="/cropsearch" className="w-2/4 ">
             {/* <div className="rounded-lg drop-shadow-2xl h-36 bg-white flex flex-col justify-center items-center"> */}
-              <img width={} height={} src={data[0]} className="rounded-xl drop-shadow-lg"/>
+              <img src={data[0]} className="rounded-xl drop-shadow-lg"/>
               {/* <p className="text-center font-medium">Crop recomend data</p> */}
             {/* </div> */}
           </Link>

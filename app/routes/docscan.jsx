@@ -1,32 +1,91 @@
+import { unstable_createFileUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
 import { Form, Link } from "@remix-run/react";
 import { useState } from "react";
 import { CropDoc } from "utils/api.server";
 import Button from "~/components/Button";
 import Field from "~/components/Field";
 
-export async function action({request}){
-  const formData = await request.formData();
+// export async function action({request}){
+//   const formData = await request.formData();
 
-  const image = formData.get("image")
+//   v
 
-  console.log(image, "imagedata")
+//   const image = formData.get("image")
 
-  const crop = await CropDoc(image);
+//   console.log(image, "imagedata")
 
-  console.log(crop, "response")
+//   const crop = await CropDoc(image);
 
-  return {crop}
-}
+//   console.log(crop, "response")
+
+//   return {crop}
+// }
+
+export const action = async ({ request }) => {
+  const uploadHandler = unstable_createFileUploadHandler({
+    maxFileSize: 10_000_000,
+    directory: "public/uploads",
+    file: ({ filename }) => filename,
+  });
+
+  const formData = await unstable_parseMultipartFormData(
+    request,
+    uploadHandler
+  );
+
+  const file = formData.get("image");
+
+  if (file) {
+    console.log(`File uploaded to server/public/uploads/${file.name}`);
+    const call = await CropDoc("public/uploads/"+file.name);
+  } else {
+    console.log("No file uploaded");
+  }
+
+  return {};
+};
 
 export default function CropScan() {
   const [image, setImage] = useState(null);
 
-  const onImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage({
-        image: URL.createObjectURL(event.target.files[0]),
-      });
+  const diseasefetch = () => {
+    var formdata = new FormData();
+    console.log(image.image, "image");
+  formdata.append("image", image.image, "test.jpeg");
+
+  var requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+  };
+
+  fetch("http://20.244.2.184/api/detect/", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
     }
+
+  const onImageChange = (event) => {
+    var formdata = new FormData();
+    // console.log(image.image, "image");
+  formdata.append("image", event.target.files[0], "test.jpeg");
+
+  var requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+  };
+
+  fetch("http://20.244.2.184/api/detect/", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+    // if (event.target.files && event.target.files[0]) {
+    //   setImage({
+    //     image: URL.createObjectURL(event.target.files[0]),
+    //   });
+    // }
   };
   return (
     <div>
@@ -65,6 +124,7 @@ export default function CropScan() {
             </div>
             <input
               onChange={onImageChange}
+              hidden
               id="dropzone-file"
               name="image"
               type="file"
@@ -84,9 +144,11 @@ export default function CropScan() {
             {/* <img src={image.image} alt="preview" className="rounded-lg" /> */}
           </div>
         )}
-        <Button type="submit" theme="monochrome" className="w-full">
+        {/* <Link to={"/doc"}> */}
+        <Button onClick={(e)=>diseasefetch(e)} type="submit" theme="monochrome" className="w-full">
           Submit
         </Button>
+        {/* </Link> */}
       </Form>
       <Button as={Link} to="/doc" theme="monochrome" className="w-full mt-4">
         doc

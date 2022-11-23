@@ -37,26 +37,32 @@ export async function getCrop({data}){
       return news
 }
 
-export async function CropDoc(data){
+export async function CropDoc(name){
   var news;
 
-  console.log(data, "data")
-  var bodyFormData = new FormData();
+  var axios = require('axios');
+  var FormData = require('form-data');
+  var fs = require('fs');
+  var data = new FormData();
+  console.log(name, "name")
+  data.append('image', fs.createReadStream(String(name)));
 
-  bodyFormData.append("image", data)
+  var config = {
+    method: 'post',
+    url: 'http://20.244.2.184/api/detect/',
+    headers: { 
+      ...data.getHeaders()
+    },
+    data : data
+  };
 
-  await axios({
-      method: 'post',
-      url: 'http://uia.centralindia.cloudapp.azure.com/api/detect/',
-      bodyFormData,
-      headers: { "Content-Type": "multipart/form-data" }
-    }).then(function (response) {
-      conso
-      news = response.data
-    })
-    .catch(function (error) {
-      news = error
-    });
+  axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  return null;
 
-    return news
 }

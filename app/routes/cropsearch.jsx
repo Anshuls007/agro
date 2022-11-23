@@ -26,60 +26,61 @@ export default function CropSearch() {
 
   return (
     <div>
-      <p>Please enter this details</p>
+      <p>Please enter the crop details</p>
+      <br/>
       <Form method="post" className="flex flex-col gap-4">
         <Field
-          label="ratio of Nitrogen"
+          placeholder="Ratio of Nitrogen"
           type="text"
           id="nitrogen"
           name="nitrogen"
           required
         />
         <Field
-          label="ratio of Phosphorous"
+          placeholder="Ratio of Phosphorous"
           type="text"
           id="Phosphorous"
           name="phosphorous"
           required
         />
         <Field
-          label="ratio of Potassium"
+          placeholder="Ratio of Potassium"
           type="text"
           id="Potassium"
           name="potassium"
           required
         />
         <Field
-          label="temperature in degree Celsius"
+          placeholder="Temperature in degree Celsius"
           type="text"
           id="temperature"
           name="temperature"
           required
         />
         <Field
-          label="relative humidity in %"
+          placeholder="Relative humidity in %"
           type="text"
           id="humidity"
           name="humidity"
           required
         />
         <Field
-          label="ph value of the soil"
+          placeholder="Ph value of the soil"
           type="text"
           id="ph"
           name="ph"
           required
         />
         <Field
-          label="rainfall in mm"
+          placeholder="Rainfall in mm"
           type="text"
           id="rainfall"
           name="rainfall"
           required
         />
-        <Button className="bg-green-300" theme="monochrome" className="w-full">
+        <button className="bg-green-300 rounded-xl py-2" theme="monochrome" >
           Submit
-        </Button>
+        </button>
       </Form>
       {JSON.stringify(crop)}
     </div>
