@@ -62,7 +62,7 @@ export default function Index() {
   return (
     <div className="flex flex-col gap-4">
       {/* crop crop */}
-      <div className="p-4 flex flex-col gap-4 bg-white rounded-lg">
+      <div className="p-4 flex flex-col gap-4 bg-white drop-shadow-lg rounded-lg">
         {console.log(crop, "Loading crop")}
         <p className="text-xl font-bold text-center">
           {" "}
@@ -184,10 +184,10 @@ export default function Index() {
         </div>
       </div>
 
-      {/* weather */}
-      <Field
+      {/* language */}
+      {/* <Field
         as={Select}
-        className="w-fit px-0 py-0"
+        className="w-fit px-0 py-0 drop-shadow-xl"
         label="Language"
         options={[
           { value: "Hindi", label: "Hindi" },
@@ -199,52 +199,72 @@ export default function Index() {
         ].find(function (option) {
           return option.value === "Hindi";
         })}
-      />
+      /> */}
+
+      {/* weather */}
       <WeatherCard />
 
       <div className="flex flex-col gap-3">
         <div className="flex gap-2">
           <Link to="/cropsearch" className="w-2/4 ">
-            <div className="rounded-lg h-36 bg-white flex flex-col justify-center items-center">
+            <div className="rounded-lg drop-shadow-2xl h-36 bg-white flex flex-col justify-center items-center">
               <img width={120} src="cropsearch.png" />
+              <p className="text-center font-medium">Crop recomend data</p>
+
             </div>
-            <p className="text-center font-medium">Crop recomend data</p>
           </Link>
-          <Link to="/cropscan" className="w-2/4 ">
-            <div className="rounded-lg h-36 justify-center bg-white flex flex-col items-center">
+          <Link to="/croprecom" className="w-2/4 ">
+            <div className="rounded-lg drop-shadow-2xl h-36 justify-center bg-white flex flex-col items-center">
               <img width={130} src="plantscan.png" />
+              <p className="text-center font-medium">Crop search</p>
+
             </div>
-            <p className="text-center font-medium">Crop search</p>
           </Link>
         </div>
 
         <div className="flex gap-2">
-          <Link to="/weather" className="w-2/4 ">
+          {/* <Link to="/weather" className="w-2/4 ">
             <div className="rounded-lg h-36 justify-center bg-white flex flex-col items-center">
               <img width={130} src="weathericon.png" />
+              <p className="text-center font-medium">Weather prediction</p>
+
             </div>
-            <p className="text-center font-medium">Weather prediction</p>
-          </Link>
+          </Link> */}
           <Link to="/docscan" className="w-2/4 ">
-            <div className="rounded-lg bg-white flex flex-col items-center">
+            <div className="rounded-lg drop-shadow-lg bg-white flex flex-col items-center">
               <img className="h-36" src="doc.jpeg" />
+              <p className="text-center font-medium">Crop doctor</p>
+
             </div>
-            <p className="text-center font-medium">Crop doctor</p>
+          </Link>
+          <Link to="/news" className="w-2/4 h- ">
+            <div className="rounded-lg drop-shadow-lg h-min justify-center bg-white flex flex-col items-center">
+              <img className="rounded h-1/6 justify-items-start" src="https://thumbs.dreamstime.com/b/packing-soil-potted-plants-potting-various-fertilizers-bottles-spray-gun-vector-illustration-flat-style-167427190.jpg" />
+              <p className="text-center font-medium">Fertilizer Calc</p>
+
+            </div>
           </Link>
         </div>
+        
+        <div className="flex gap-2">
+          
+          </div>
       </div>
       <div className="flex flex-col gap-4">
+        <label className="text-lg font-bold ml-2">Local News</label>
+        <div className="bg-white drop-shadow-2xl rounded-2xl px-4 py-4 flex flex-col gap-4 overscroll-y">
         {news.map((item) => (
           <a href={item.url}>
-            <Card className="flex flex-col gap-3 overflow-y">
-              <p>{item.title}</p>
+            <div className=" border-b border-xl">
+              <p className="font-bold">{item.title}</p>
               <p className="font-normal">{item.description}</p>
-              <p className="font-normal text-neutral-500">
+              <p className="font-normal text-sm text-gray-600">
                 {item["published date"]}
               </p>
-            </Card>
+            </div>
           </a>
         ))}
+        </div>
       </div>
     </div>
   );

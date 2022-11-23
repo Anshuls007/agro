@@ -26,15 +26,15 @@ export default function App() {
   return (
     <html lang="en">
       <head>
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <Meta />
         <Links />
       </head>
-      <body className="h-full bg-green-100">
+      <body className="h-full">
           <div className="bg-green-300 px-4">
           <Nav />
           </div>
-        <div className="w-[min(640px,_100%)] h-full bg-green-100 mx-auto p-4 pt-1">
+        <div className="w-[min(640px,_100%)] h-full mx-auto p-4 pt-1">
           <Outlet />
         </div>
         <ScrollRestoration />
