@@ -22,10 +22,15 @@ export default function Nav() {
           <Link to="/" onClick={() => setIsNavOpen(false)}>
             Home
           </Link>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
+          <Link to="/cropsearch" onClick={() => setIsNavOpen(false)}>
+          Crop recomend data
+          </Link>
+          <Link to="/docscan" onClick={() => setIsNavOpen(false)}>
+          Crop doctor
+          </Link>
+          <Link to="/weather" onClick={() => setIsNavOpen(false)}>
+          Weather prediction
+          </Link>
         </div>
       </div>
     </div>

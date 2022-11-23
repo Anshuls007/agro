@@ -1,7 +1,22 @@
 import { Form, Link } from "@remix-run/react";
 import { useState } from "react";
+import { CropDoc } from "utils/api.server";
 import Button from "~/components/Button";
 import Field from "~/components/Field";
+
+export async function action({request}){
+  const formData = await request.formData();
+
+  const image = formData.get("image")
+
+  console.log(image, "imagedata")
+
+  const crop = await CropDoc(image);
+
+  console.log(crop, "response")
+
+  return {crop}
+}
 
 export default function CropScan() {
   const [image, setImage] = useState(null);
@@ -16,8 +31,9 @@ export default function CropScan() {
   return (
     <div>
       <p>Please enter this details</p>
-      <Form className="flex flex-col gap-4">
-        {!image ? (
+      <Form method="post" className="flex flex-col gap-4" encType="multipart/form-data">
+        <input type="hidden" name="yoo" value="dsf"/>
+        {true ? (
           <label
             for="dropzone-file"
             class="flex flex-col justify-center items-center w-full h-64 bg-white rounded-lg border-2 border-gray-300 border-dashed cursor-pointer"
@@ -52,7 +68,6 @@ export default function CropScan() {
               id="dropzone-file"
               name="image"
               type="file"
-              class="hidden"
               accept="image/*"
             />
           </label>
@@ -69,7 +84,7 @@ export default function CropScan() {
             {/* <img src={image.image} alt="preview" className="rounded-lg" /> */}
           </div>
         )}
-        <Button theme="monochrome" className="w-full">
+        <Button type="submit" theme="monochrome" className="w-full">
           Submit
         </Button>
       </Form>

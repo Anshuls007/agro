@@ -16,7 +16,10 @@ export const meta = () => ({
 });
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [{ rel: "stylesheet", href: styles }, {
+    rel: "manifest",
+    href: "/resources/manifest.json",
+  },];
 }
 
 export default function App() {
@@ -27,8 +30,10 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full bg-green-100">
-        <div className="w-[min(640px,_100%)] h-full bg-green-100 mx-auto p-4 pt-1">
+          <div className="bg-green-300 px-4">
           <Nav />
+          </div>
+        <div className="w-[min(640px,_100%)] h-full bg-green-100 mx-auto p-4 pt-1">
           <Outlet />
         </div>
         <ScrollRestoration />
