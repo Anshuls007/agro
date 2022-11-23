@@ -36,8 +36,10 @@ export default function Index() {
   const [crop, setCrop] = useState("")
 
   useEffect(() => {
-    const i = localStorage.getItem("crop")
-    setCrop(JSON.parse(i))
+    const i = localStorage.getItem("crop") 
+    if(i){
+      setCrop(JSON.parse(i))
+    }
   }, [])
 
   useEffect(() => {
