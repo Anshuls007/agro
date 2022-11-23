@@ -78,7 +78,7 @@ export default function Index() {
 
       <div className="p-4 flex flex-col gap-4 bg-white rounded-lg">
         {console.log(crop, "crop")}
-        <p className="text-xl font-bold text-center"> {crop[(crop?.length || 0)-1]?.type}</p>
+        <p className="text-xl font-bold text-center"> {crop[crop?.length-1]?.type}</p>
 <div className="flex justify-evenly items-center">
 <div className="flex flex-col items-center">
 <svg class="transform -rotate-90 w-14 h-14">
@@ -87,10 +87,10 @@ export default function Index() {
 
           <circle cx="50%" cy="50%" r="20" stroke="currentColor" stroke-width="8" fill="transparent"
               strokeDasharray={125.714285714}
-              strokeDashoffset={125.714285714 - (crop[(crop?.length || 0)-1]?.nitrogen || 0) / 100 * 125.714285714}
+              strokeDashoffset={125.714285714 - (crop[crop?.length-1]?.nitrogen || 0) / 100 * 125.714285714}
               class="text-blue-500 " />
       </svg>
-      <p className="text-lg font-bold">{crop[(crop?.length || 0)-1]?.nitrogen}</p>
+      <p className="text-lg font-bold">{crop[crop?.length-1]?.nitrogen}</p>
       <p >Nitrogen</p>
 </div>
 
@@ -101,10 +101,10 @@ export default function Index() {
 
           <circle cx="50%" cy="50%" r="20" stroke="currentColor" stroke-width="8" fill="transparent"
               strokeDasharray={125.714285714}
-              strokeDashoffset={125.714285714 - (crop[(crop?.length || 0)-1]?.phosphorous || 0) / 100 * 125.714285714}
+              strokeDashoffset={125.714285714 - (crop[crop?.length-1]?.phosphorous || 0) / 100 * 125.714285714}
               class="text-blue-500 " />
       </svg>
-      <p className="text-lg font-bold">{crop[(crop?.length || 0)-1]?.phosphorous}</p>
+      <p className="text-lg font-bold">{crop[crop?.length-1]?.phosphorous}</p>
       <p>Phosphorous</p>
 </div>
       <div className="flex flex-col items-center">
@@ -114,10 +114,10 @@ export default function Index() {
 
           <circle cx="50%" cy="50%" r="20" stroke="currentColor" stroke-width="8" fill="transparent"
               strokeDasharray={125.714285714}
-              strokeDashoffset={125.714285714 - (crop[(crop?.length || 0)-1]?.potassium / 100 || 0) * 125.714285714}
+              strokeDashoffset={125.714285714 - (crop[crop?.length-1]?.potassium / 100 || 0) * 125.714285714}
               class="text-blue-500 " />
       </svg>
-      <p className="text-lg font-bold">{crop[(crop?.length || 0)-1]?.potassium}</p>
+      <p className="text-lg font-bold">{crop[crop?.length-1]?.potassium}</p>
       <p >Potassium</p>
 </div>
 </div>
