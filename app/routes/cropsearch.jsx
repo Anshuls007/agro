@@ -77,7 +77,7 @@ export default function CropSearch() {
           name="rainfall"
           required
         />
-        <Button theme="monochrome" className="w-full">
+        <Button className="bg-green-300" theme="monochrome" className="w-full">
           Submit
         </Button>
       </Form>

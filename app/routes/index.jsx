@@ -202,21 +202,23 @@ export default function Index() {
       /> */}
 
       {/* weather */}
+      <Link to="/weather">
       <WeatherCard />
+      </Link>
 
       <div className="flex flex-col gap-3">
         <div className="flex gap-2">
           <Link to="/cropsearch" className="w-2/4 ">
             <div className="rounded-lg drop-shadow-2xl h-36 bg-white flex flex-col justify-center items-center">
-              <img width={120} src="cropsearch.png" />
+              <img width={120} src="cropsearch.png" className="mx-2"/>
               <p className="text-center font-medium">Crop recomend data</p>
 
             </div>
           </Link>
-          <Link to="/croprecom" className="w-2/4 ">
+          <Link to="/nutrientrecom" className="w-2/4 ">
             <div className="rounded-lg drop-shadow-2xl h-36 justify-center bg-white flex flex-col items-center">
               <img width={130} src="plantscan.png" />
-              <p className="text-center font-medium">Crop search</p>
+              <p className="text-center font-medium">Nutrients</p>
 
             </div>
           </Link>

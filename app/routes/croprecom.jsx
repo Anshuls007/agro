@@ -1,4 +1,5 @@
 import { Form, Link } from "@remix-run/react";
+import { data } from "node-persist";
 import { useState } from "react";
 import Button from "~/components/Button";
 import Field from "~/components/Field";
@@ -15,8 +16,8 @@ export default function CropScan() {
   };
   return (
     <div>
-      <p>Please enter this details</p>
-      <Form className="flex flex-col gap-4">
+      {/* <p>Please enter this details</p> */}
+      {/* <Form className="flex flex-col gap-4">
         {!image ? (
           <label
             for="dropzone-file"
@@ -66,7 +67,6 @@ export default function CropScan() {
               backgroundPosition: "center",
             }}
           >
-            {/* <img src={image.image} alt="preview" className="rounded-lg" /> */}
           </div>
         )}
         <Button theme="monochrome" className="w-full">
@@ -80,7 +80,19 @@ export default function CropScan() {
         className="w-full mt-4"
       >
         cropsearchresult
-      </Button>
+      </Button> */}
+
+      <div className="flex flex-col gap-3">
+        <div className="flex gap-2">
+          {data.map((item) => (
+            <Link to="/cropdetail" className="w-2/4 ">
+            <div className="rounded-lg drop-shadow-lg h-36 bg-white flex flex-col justify-center items-center">
+              <img width={120} src="cropsearch.png" />
+              <p className="text-center font-medium">Crop recomend data</p>
+            </div>
+          </Link>))}
+        </div>
+      </div>
     </div>
   );
 }

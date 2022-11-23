@@ -9,7 +9,7 @@ export default function Field({
 }) {
   return (
     <fieldset
-      className="w-full flex flex-col items-stretch justify-start gap-1 disabled:opacity-60 disabled:cursor-not-allowed"
+      className="w-full flex flex-col items-stretch border border-gray-400 rounded-xl px-2 py-2 justify-start gap-1 disabled:opacity-60 disabled:cursor-not-allowed"
       disabled={disabled}
     >
       {label ? (
@@ -17,7 +17,7 @@ export default function Field({
           {label}
         </label>
       ) : null}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center">
         <As
           id={id}
           className={[
